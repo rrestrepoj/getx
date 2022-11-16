@@ -248,9 +248,10 @@ class Dec2Bin extends GetView<ConverterController> {
                         color: Colors.white,
                       ),
                     ),
+                    // ignore: todo
                     // TODO: Llama al metodo updateBinary del controlador con un valor de 0.
                     onPressed: () {
-                      controller.updateBinary(0);
+                      controller.updateDecimal(0);
                     },
                   ),
                 )),
