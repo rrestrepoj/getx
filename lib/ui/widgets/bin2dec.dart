@@ -1,8 +1,10 @@
+import 'package:calculadorabinariodecimalgetx/domain/use_case/converter.dart';
+import 'package:calculadorabinariodecimalgetx/ui/controllers/converter_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 // TODO: Para acceder al controlador desde este Stateless Widget extiende de GetView
-class Bin2Dec extends StatelessWidget {
+class Bin2Dec extends GetView<ConverterController> {
   const Bin2Dec({Key? key}) : super(key: key);
 
   @override
@@ -11,26 +13,31 @@ class Bin2Dec extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: <Widget>[
         Container(
-          padding: const EdgeInsets.all(8.0),
-          alignment: Alignment.centerRight,
-          // TODO: Usa Obx para mostrar controller.decimal y que este widget reaccione a cambios en el controlador
-          child: Text(
-            // here we get the decimal value from the state
-            controller.decimal,
-            textAlign: TextAlign.right,
-            style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 35),
-          ),
-        ),
+            padding: const EdgeInsets.all(8.0),
+            alignment: Alignment.centerRight,
+            // TODO: Usa Obx para mostrar controller.decimal y que este widget reaccione a cambios en el controlador
+
+            child: Obx(
+              () => Text(
+                // here we get the decimal value from the state
+                controller.decimal,
+                textAlign: TextAlign.right,
+                style:
+                    const TextStyle(fontWeight: FontWeight.bold, fontSize: 35),
+              ),
+            )),
         Container(
-          padding: const EdgeInsets.all(8.0),
-          alignment: Alignment.centerRight,
-          // TODO: Usa Obx para mostrar controller.binary y que este widget reaccione a cambios en el controlador
-          child: Text(
-            controller.binary,
-            textAlign: TextAlign.right,
-            style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 35),
-          ),
-        ),
+            padding: const EdgeInsets.all(8.0),
+            alignment: Alignment.centerRight,
+            // TODO: Usa Obx para mostrar controller.binary y que este widget reaccione a cambios en el controlador
+            child: Obx(
+              () => Text(
+                controller.binary,
+                textAlign: TextAlign.right,
+                style:
+                    const TextStyle(fontWeight: FontWeight.bold, fontSize: 35),
+              ),
+            )),
         Expanded(
           flex: 4,
           child: Row(
@@ -48,7 +55,10 @@ class Bin2Dec extends StatelessWidget {
                         ),
                       ),
                       // TODO: Llama al metodo updateBinary del controlador con un valor de 1.
-                      onPressed: () {},
+
+                      onPressed: () {
+                        controller.updateBinary(1);
+                      },
                     ),
                   ),
                 ),
@@ -64,7 +74,10 @@ class Bin2Dec extends StatelessWidget {
                         ),
                       ),
                       // TODO: Llama al metodo updateBinary del controlador con un valor de 0.
-                      onPressed: () {},
+
+                      onPressed: () {
+                        controller.updateBinary(0);
+                      },
                     ),
                   ),
                 ),
@@ -77,7 +90,10 @@ class Bin2Dec extends StatelessWidget {
             child: MaterialButton(
               color: Theme.of(context).colorScheme.secondary,
               // TODO: Llama al metodo reset del controlador.
-              onPressed: () {},
+              onPressed: () {
+                controller.reset();
+              },
+
               child: const Text(
                 "Reset",
                 style: TextStyle(
